@@ -1,8 +1,18 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import wordles from "./wordles";
 import valid from "./valid";
 
-const GridCell = ({
+interface GridCellProps {
+  cell: string;
+  color: string;
+  isActiveRow: boolean;
+  isWinRow: boolean;
+  cellIndex: number;
+  flipDuration: number;
+  flipStagger: number;
+}
+
+const GridCell: React.FC<GridCellProps> = ({
   cell,
   color,
   isActiveRow,
@@ -10,7 +20,6 @@ const GridCell = ({
   cellIndex,
   flipDuration,
   flipStagger,
-  word,
 }) => {
   const isFilled = cell !== "";
 
@@ -73,7 +82,12 @@ const GridCell = ({
   );
 };
 
-const Wordle = ({ id, onReport }: any) => {
+interface WordleProps {
+  id: number;
+  onReport?: (boardIndex: number, map: Record<string, string>) => void;
+}
+
+const Wordle: React.FC<WordleProps> = ({ id, onReport }) => {
   const [word] = useState(() =>
     wordles[Math.floor(Math.random() * wordles.length)].toUpperCase()
   );
@@ -291,7 +305,6 @@ const Wordle = ({ id, onReport }: any) => {
                 cellIndex={cellIndex}
                 flipDuration={flipDuration}
                 flipStagger={flipStagger}
-                word={word}
               />
             ));
           })}
