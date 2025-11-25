@@ -188,7 +188,12 @@ function Keyboard({
                   }}
                 />
                 <span
-                  style={{ position: "relative", zIndex: 2, fontWeight: 700 }}
+                  style={{
+                    position: "relative",
+                    zIndex: 2,
+                    fontWeight: 700,
+                    color: "#000",
+                  }}
                 >
                   {k}
                 </span>
